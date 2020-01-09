@@ -20,9 +20,10 @@
 				<div class="col-sm-4">
 					<div class="signup-form"><!--sign up form-->
 						<h2>New User Signup!</h2>
-						<form action="#" method="post">
-							<input type="text" placeholder="Full Name" name="cutomer_name" required=""/>
-							<input type="email" placeholder="Email Address" name="cutomer_email" required=""/>
+						<form action="{{url('/customer-registration')}}" method="post">
+                            {{csrf_field()}}
+							<input type="text" placeholder="Full Name" name="customer_name" required=""/>
+							<input type="email" placeholder="Email Address" name="customer_email" required=""/>
                             <input type="password" placeholder="Password" name="password" required=""/>
                             <input type="text" placeholder="Mobile Number" name="mobile_number" required=""/>
 							<button type="submit" class="btn btn-default">Signup</button>

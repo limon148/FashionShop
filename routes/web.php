@@ -29,8 +29,10 @@ Route::post('/update-cart','CartController@update_cart');
 
 //checkout.................
 Route::get('/login-check','CheckoutController@login_check');
-
-
+Route::post('/customer-registration','CheckoutController@customer_registration');
+Route::get('/checkout','CheckoutController@checkout');
+Route::post('/save-shipping-details','CheckoutController@save_shipping_details');
+Route::get('/customer-logout','CheckoutController@customer_logout');
 
 
 
