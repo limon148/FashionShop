@@ -41,18 +41,47 @@ class CheckoutController extends Controller
         $data['shipping_mobile_number']=$request->shipping_mobile_number;
         $data['shipping_city']=$request->shipping_city;
         $shipping_id=DB::table('tbl_shipping')
-                    ->inserGetid($data);
+                    ->insertGetid($data);
         Session::put('shipping_id',$shipping_id);
         return Redirect::to('/payment');
     }
     public function customer_logout()
     {
         Session::flush();
-        Cart::destroy();
         return Redirect::to('/');
     }
     public function checkout()
     {
+        // $all_published_category=DB::table('tbl_category')
+        //                         ->where('publication_status',1)
+        //                         ->get();
+        // $manage_published_category=view('pages.checkout')
+        //     ->with('all_published_category',$all_published_category);
+        // return view('layout')->with('pages.checkout');
         return view('pages.checkout');
+    }
+    public function customer_login(Request $request)
+    {
+        $customer_email=$request->customer_email;
+        $password=md5($request->password);
+        $result=DB::table('tbl_customer')
+                ->where('customer_email',$customer_email)
+                ->where('password',$password)
+                ->first();
+        if ($result) {
+            Session::put('customer_id',$result->customer_id);
+            return Redirect::to('/checkout');
+        }else{
+            return Redirect::to('/login-check');
+        }
+    }
+    public function payment()
+    {
+        return view('pages.payment');
+    }
+    public function order_place(Request $request)
+    {
+        $payment_gateway=$request->payment_gateway;
+        
     }
 }

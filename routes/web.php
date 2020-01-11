@@ -32,8 +32,15 @@ Route::get('/login-check','CheckoutController@login_check');
 Route::post('/customer-registration','CheckoutController@customer_registration');
 Route::get('/checkout','CheckoutController@checkout');
 Route::post('/save-shipping-details','CheckoutController@save_shipping_details');
-Route::get('/customer-logout','CheckoutController@customer_logout');
 
+
+//login & logout.....................
+Route::get('/customer-logout','CheckoutController@customer_logout');
+Route::post('/customer-login','CheckoutController@customer_login');
+
+//payment
+Route::get('/payment','CheckoutController@payment');
+Route::post('/order-place','CheckoutController@order_place');
 
 
 
