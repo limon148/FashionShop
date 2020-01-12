@@ -12,7 +12,6 @@
         <div class="table-responsive cart_info">
             <?php
                      $contents=Cart::content();
-
 				?>
             <table class="table table-condensed">
                 <thead>
@@ -86,9 +85,9 @@
             </div>
             <form action="{{url('/order-place')}}" method="post">
                 {{ csrf_field() }}
-                <input type="radio" name="payment_gateway" value="handcash"> Hand Cash <br>
-                <input type="radio" name="payment_gateway" value="Card"> Debit Card <br>
-                <input type="radio" name="payment_gateway" value="bkash"> B-Kash <br>
+                <input type="radio" name="payment_method" value="handcash"> Hand Cash <br>
+                <input type="radio" name="payment_method" value="card"> Debit Card <br>
+                <input type="radio" name="payment_method" value="paypal"> Paypal <br>
                 <input type="submit" class="btn btn-success" value="Done">
             </form>
         </div>

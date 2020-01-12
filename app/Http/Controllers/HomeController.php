@@ -16,7 +16,6 @@ class HomeController extends Controller
                         ->join('tbl_manufacture','tbl_products.manufacture_id','=','tbl_manufacture.manufacture_id')
                         ->select('tbl_products.*','tbl_category.category_name','tbl_manufacture.manufacture_name')
                         ->where('tbl_products.publication_status',1)
-                        ->limit(9)
                         ->get();
         $manage_published_product=view('pages.home_content')
             ->with('all_published_product',$all_published_product);
@@ -31,7 +30,6 @@ class HomeController extends Controller
                         ->select('tbl_products.*','tbl_category.category_name')
                         ->where('tbl_category.category_id',$category_id)
                         ->where('tbl_products.publication_status',1)
-                        ->limit(15)
                         ->get();
         $manage_product_by_category=view('pages.category_by_product')
             ->with('product_by_category',$product_by_category);
@@ -46,7 +44,6 @@ class HomeController extends Controller
                         ->select('tbl_products.*','tbl_category.category_name','tbl_manufacture.manufacture_name')
                         ->where('tbl_manufacture.manufacture_id',$manufacture_id)
                         ->where('tbl_products.publication_status',1)
-                        ->limit(15)
                         ->get();
         $manage_product_by_manufacture=view('pages.manufacture_by_product')
             ->with('product_by_manufacture',$product_by_manufacture);
@@ -63,9 +60,9 @@ class HomeController extends Controller
                         ->where('tbl_products.publication_status',1)
                         ->first();
         return view('pages.product_details') -> with('product_by_details',$product_by_details);
-        // $manage_product_by_details=view('pages.product_details')
-        //     ->with('product_by_details',$product_by_details);
-        // return view('layout')
-        //     ->with('pages.product_details',$manage_product_by_details);
+    }
+    public function customer_profile()
+    {
+        return view('pages.customer_profile');
     }
 }

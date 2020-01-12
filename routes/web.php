@@ -10,13 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//fromtend route.................
+//frontend route.................
 Route::get('/', 'HomeController@index');
 
 //show category wise product
 Route::get('//product-by-category/{category_id}', 'HomeController@show_product_by_category');
 Route::get('//product-by-manufacture/{manufacture_id}', 'HomeController@show_product_by_manufacture');
 Route::get('/view-product/{product_id}', 'HomeController@product_details_by_id');
+Route::get('/customer-profile', 'HomeController@customer_profile');
 
 
 
@@ -49,6 +50,15 @@ Route::get('/logout', 'SuperAdminController@logout');
 Route::get('/admin', 'AdminController@index');
 Route::get('/dashboard', 'SuperAdminController@index');
 Route::post('/admin-dashboard', 'AdminController@dashboard');
+Route::get('/profile', 'AdminController@profile');
+
+
+//order...............
+Route::get('/manage-order', 'OrderController@index');
+Route::get('/unactive-order/{order_id}', 'OrderController@unactive_order');
+Route::get('/active-order/{order_id}', 'OrderController@active_order');
+Route::get('/view-order/{order_id}', 'OrderController@view_order');
+
 
 //category................
 Route::get('/add-category', 'CategoryController@index');

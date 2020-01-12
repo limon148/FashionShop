@@ -81,15 +81,23 @@
                         <li>Eco Tax <span>{{Cart::tax()}}</span></li>
                         <li>Shipping Cost <span>Free</span></li>
                         <li>Total <span>{{Cart::total()}}</span></li>
-					</ul>""
-					<?php $customer_id=Session::get('customer_id'); ?>
-                    <?php if($customer_id != NULL){ ?>
-                    <li><a href="{{URL::to('/checkout')}}"><i class="btn btn-primary" color="orange">Checkout</i></a>
+                    </ul>
+
+                    <?php $customer_id=Session::get('customer_id'); 
+                          $shipping_id=Session::get('shipping_id');
+                                ?>
+                    <?php if($customer_id != NULL && $shipping_id==NULL){ ?>
+                    <li><a href="{{URL::to('/checkout')}}"><i class="btn btn-primary">Checkout</i></a>
+                    </li>
+                    <?php }elseif($customer_id != NULL && $shipping_id!=NULL){ ?>
+                    <li><a href="{{URL::to('/payment')}}"><i class="btn btn-primary">Checkout</i></a>
                     </li>
                     <?php }else{ ?>
-                    <li><a class="btn btn-default check_out" href="{{URL::to('/login-check')}}">Check Out</a>
+                    <li><a href="{{URL::to('/login-check')}}"><i class="btn btn-primary">Checkout</i></a>
                     </li>
                     <?php } ?>
+
+
                 </div>
             </div>
         </div>

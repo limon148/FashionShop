@@ -52,12 +52,6 @@ class CheckoutController extends Controller
     }
     public function checkout()
     {
-        // $all_published_category=DB::table('tbl_category')
-        //                         ->where('publication_status',1)
-        //                         ->get();
-        // $manage_published_category=view('pages.checkout')
-        //     ->with('all_published_category',$all_published_category);
-        // return view('layout')->with('pages.checkout');
         return view('pages.checkout');
     }
     public function customer_login(Request $request)
@@ -81,7 +75,42 @@ class CheckoutController extends Controller
     }
     public function order_place(Request $request)
     {
-        $payment_gateway=$request->payment_gateway;
+        $payment_method=$request->payment_method;
+        $pdata=array();
+        $pdata['payment_method']=$payment_method;
+        $pdata['payment_status']='pending';
+        $payment_id=DB::table('tbl_payment')
+                    ->insertGetid($pdata);
         
+        $odata=array();
+        $odata['customer_id']=Session::get('customer_id');
+        $odata['shipping_id']=Session::get('shipping_id');
+        $odata['payment_id']=$payment_id;
+        $odata['order_total']=Cart::total();
+        $odata['order_status']='pending';
+        $order_id=DB::table('tbl_order')
+                    ->insertGetid($odata);
+        
+        $contents=Cart::content();
+        $oddata=array();
+        foreach ($contents as $v_content) {
+            $oddata['order_id']=$order_id;
+            $oddata['product_id']=$v_content->id;
+            $oddata['product_name']=$v_content->name;
+            $oddata['product_price']=$v_content->price;
+            $oddata['product_sales_quantity']=$v_content->qty;
+            DB::table('tbl_order_details')
+                    ->insert($oddata);
+        }
+        if ($payment_method=='handcash') {
+            Cart::destroy();
+            return view('pages.handcash');
+        }elseif ($payment_method=='paypal') {
+            echo "Succesfully by Paypal";
+        }elseif ($payment_method=='card') {
+            echo "Succesfully by Card";
+        }else {
+            return Redirect::to('/payment');
+        }
     }
 }

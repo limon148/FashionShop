@@ -26,6 +26,10 @@
     <link
         href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic-ext,latin-ext'
         rel='stylesheet' type='text/css'>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!-- end: CSS -->
 
 
@@ -59,12 +63,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="index.html"><span>Metro</span></a>
+                <a class="brand" href="index.html"><span>Dashboard</span></a>
 
                 <!-- start: Header Menu -->
                 <div class="nav-no-collapse header-nav">
                     <ul class="nav pull-right">
-                        <li class="dropdown hidden-phone">
+                        <!-- <li class="dropdown hidden-phone">
                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                 <i class="halflings-icon white warning-sign"></i>
                             </a>
@@ -147,9 +151,9 @@
                                     <a>View all notifications</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         <!-- start: Notifications Dropdown -->
-                        <li class="dropdown hidden-phone">
+                        <!-- <li class="dropdown hidden-phone">
                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                 <i class="halflings-icon white tasks"></i>
                             </a>
@@ -208,9 +212,9 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- end: Notifications Dropdown -->
+                        <-- end: Notifications Dropdown -->
                         <!-- start: Message Dropdown -->
-                        <li class="dropdown hidden-phone">
+                        <!-- <li class="dropdown hidden-phone">
                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                 <i class="halflings-icon white envelope"></i>
                             </a>
@@ -304,13 +308,12 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- end: Message Dropdown -->
-                        <li>
+                        <-- end: Message Dropdown -->
+                        <!-- <li>
                             <a class="btn" href="#">
                                 <i class="halflings-icon white wrench"></i>
                             </a>
-                        </li>
-                        <!-- start: User Dropdown -->
+                        </li> -->
                         <li class="dropdown">
                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                 <i class="halflings-icon white user">
@@ -322,7 +325,8 @@
                                 <li class="dropdown-menu-title">
                                     <span>Account Settings</span>
                                 </li>
-                                <li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
+                                <li><a href="{{URL::to('/profile')}}"><i class="halflings-icon user"></i> Profile</a>
+                                </li>
                                 <li><a href="{{URL::to('/logout')}}"><i class="halflings-icon off"></i> Logout</a></li>
                             </ul>
                         </li>
@@ -355,10 +359,12 @@
                                     class="hidden-tablet">
                                     Add Category</span></a></li>
 
-                        <li><a href="{{URL::to('/all-manufacture')}}"><i class="icon-eye-open"></i><span class="hidden-tablet">
+                        <li><a href="{{URL::to('/all-manufacture')}}"><i class="icon-eye-open"></i><span
+                                    class="hidden-tablet">
                                     All Manufacture</span></a></li>
 
-                        <li><a href="{{URL::to('/add-manufacture')}}"><i class="icon-dashboard"></i><span class="hidden-tablet">
+                        <li><a href="{{URL::to('/add-manufacture')}}"><i class="icon-dashboard"></i><span
+                                    class="hidden-tablet">
                                     Add Manufacture</span></a></li>
 
                         <li>
@@ -366,11 +372,13 @@
                                     class="hidden-tablet"> Products</span><span class="label label-important"> New
                                 </span></a>
                             <ul>
-                                <li><a class="submenu" href="{{URL::to('/add-product')}}"><i class="icon-file-alt"></i><span
-                                            class="hidden-tablet"> Add Products</span></a></li>
+                                <li><a class="submenu" href="{{URL::to('/add-product')}}"><i
+                                            class="icon-file-alt"></i><span class="hidden-tablet"> Add
+                                            Products</span></a></li>
 
-                                <li><a class="submenu" href="{{URL::to('/all-product')}}"><i class="icon-file-alt"></i><span
-                                            class="hidden-tablet"> All Products</span></a></li>
+                                <li><a class="submenu" href="{{URL::to('/all-product')}}"><i
+                                            class="icon-file-alt"></i><span class="hidden-tablet"> All
+                                            Products</span></a></li>
                             </ul>
                         </li>
 
@@ -378,22 +386,25 @@
                             <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span
                                     class="hidden-tablet"> Slider</span></a>
                             <ul>
-                                <li><a class="submenu" href="{{URL::to('/add-slider')}}"><i class="icon-file-alt"></i><span
-                                            class="hidden-tablet"> Add Slider</span></a></li>
+                                <li><a class="submenu" href="{{URL::to('/add-slider')}}"><i
+                                            class="icon-file-alt"></i><span class="hidden-tablet"> Add Slider</span></a>
+                                </li>
 
-                                <li><a class="submenu" href="{{URL::to('/all-slider')}}"><i class="icon-file-alt"></i><span
-                                            class="hidden-tablet"> All Slider</span></a></li>
+                                <li><a class="submenu" href="{{URL::to('/all-slider')}}"><i
+                                            class="icon-file-alt"></i><span class="hidden-tablet"> All Slider</span></a>
+                                </li>
                             </ul>
                         </li>
 
-                        <li><a href="chart.html"><i class="icon-list-alt"></i><span class="hidden-tablet">
-                                    Social Link</span></a></li>
+                        <li><a href="{{URL::to('/manage-order')}}"><i class="icon-list-alt"></i><span
+                                    class="hidden-tablet">
+                                    Manage Order</span></a></li>
 
-                        <li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet">
-                                    Shop Nane</span></a></li>
+                        <!-- <li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet">
+                                    Social Link</span></a></li> -->
 
-                        <li><a href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet">
-                                    Delivery Man</span></a></li>
+                        <!-- <li><a href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet">
+                                    Delivery Man</span></a></li> -->
 
                     </ul>
                 </div>
@@ -488,12 +499,12 @@
     <script>
     $(document).on("click", "#delete", function(e) {
         e.preventDefault();
-        var link=$(this).attr("href");
-        bootbox.confirm("Are you want to delete?",function(confirmed){
-            if(confirmed){
-                window.location.href=link;
+        var link = $(this).attr("href");
+        bootbox.confirm("Are you want to delete?", function(confirmed) {
+            if (confirmed) {
+                window.location.href = link;
             };
-        }); 
+        });
     });
     </script>
     <!-- end: JavaScript-->

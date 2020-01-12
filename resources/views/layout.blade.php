@@ -27,6 +27,10 @@
         href="{{URL::to('frontend/images/ico/apple-touch-icon-72-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed"
         href="{{URL::to('frontend/images/ico/apple-touch-icon-57-precomposed.png')}}">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <!--/head-->
 
@@ -105,20 +109,22 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="contactinfo">
-                            <ul class="nav nav-pills">
+                            <!-- <ul class="nav nav-pills">
                                 <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
                                 <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="social-icons pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="https://www.facebook.com/mehedihasan.limon.948"><i
+                                            class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://twitter.com/MehediH95731185"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/mehedi-hasan-58ba4b14b/"><i
+                                            class="fa fa-linkedin"></i></a></li>
+                                <!-- <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li> -->
                             </ul>
                         </div>
                     </div>
@@ -136,7 +142,7 @@
                             <a href="{{URL::to('/')}}"><img src="{{URL::to('frontend/images/home/logo.png')}}"
                                     alt="" /></a>
                         </div>
-                        <div class="btn-group pull-right">
+                        <!-- <div class="btn-group pull-right">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default dropdown-toggle usa"
                                     data-toggle="dropdown">
@@ -160,21 +166,26 @@
                                     <li><a href="#">Pound</a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                                <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-
                                 <?php $customer_id=Session::get('customer_id'); 
                                       $shipping_id=Session::get('shipping_id');
-                                ?>
+                                ?> 
+
+                                <?php if($customer_id != NULL){ ?>
+                                <li><a href="{{URL::to('/customer-profile')}}"><i class="fa fa-user"></i> Account</a>
+                                </li>
+                                <?php } ?>
+
+                                <li><a href="#"><i class="fa fa-star"></i> Announcement</a></li>
+
                                 <?php if($customer_id != NULL && $shipping_id==NULL){ ?>
                                 <li><a href="{{URL::to('/checkout')}}"><i class="fa fa-crosshairs"></i> Checkout</a>
                                 </li>
-                                <?php }if($customer_id != NULL && $shipping_id!=NULL){ ?>
+                                <?php }elseif($customer_id != NULL && $shipping_id!=NULL){ ?>
                                 <li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Checkout</a>
                                 </li>
                                 <?php }else{ ?>
@@ -217,8 +228,6 @@
                                 <li><a href="{{URL::to('/')}}" class="active">Home</a></li>
                                 <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-                                        <li><a href="product-details.html">Product Details</a></li>
                                         <?php $customer_id=Session::get('customer_id'); 
                                               $shipping_id=Session::get('shipping_id');
                                         ?>
@@ -233,18 +242,10 @@
                                         <?php }else{ ?>
                                         <li><a href="{{URL::to('/login-check')}}"><i class="fa fa-crosshairs"></i>
                                                 Checkout</a>
-                                        <?php } ?>
+                                            <?php } ?>
                                         <li><a href="{{URL::to('/show-cart')}}">Cart</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="404.html">404</a></li>
-                                <li><a href="contact-us.html">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -308,16 +309,14 @@
                         </div>
                         <!--/brands_products-->
 
-                        <div class="price-range">
-                            <!--price-range-->
+                        <!-- <div class="price-range">
                             <h2>Price Range</h2>
                             <div class="well text-center">
                                 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600"
                                     data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
                                 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
                             </div>
-                        </div>
-                        <!--/price-range-->
+                        </div> -->
 
                         <div class="shipping text-center">
                             <!--shipping-->
